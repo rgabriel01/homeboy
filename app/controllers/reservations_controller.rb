@@ -1,8 +1,10 @@
 class ReservationsController < ActionController::API
   def create
-    guest = ParserServices::Guest.parse(params)
-    gg = ProfileServices::Guest.create!(guest)
-    reservation = ParserServices::Reservation.parse(params)
-    render json: {success: true, data: { guest: gg, reservation: reservation } }
+    parsed_guest = ParserServices::Guest.parse(params)
+    guest = ProfileServices::Guest.create!(parsed_guest)
+    parsed_reservation = ParserServices::Reservation.parse(params)
+    reservation = ProfileServices::Reservation.create!(guest.id, parsed_reservation)
+
+    render json: {success: true, data: { guest: guest, reservation: reservation } }
   end
 end
