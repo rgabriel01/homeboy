@@ -9,13 +9,12 @@ class GuestParserService
 
   def parse
     {
-      first_name: parse_email,
-      last_name: parse_first_name,
-      email: parse_last_name,
-      phone: parse_phone_numbers
+      email: parse_email,
+      first_name: parse_first_name,
+      last_name: parse_last_name,
+      phone_numbers: parse_phone_numbers
     }
   end
-
 
   private
 
