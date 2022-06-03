@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class ReservationTest < ActiveSupport::TestCase
-  test 'test for valid structure' do
+  test 'valid structure' do
     guest = Guest.create(email: 'mon@mon.com', first_name: 'Raymond', last_name: 'Gabriel')
     reservation = Reservation.new(
       code: 'XXX',

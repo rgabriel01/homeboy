@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class GuestTest < ActiveSupport::TestCase
-  test 'test for valid structure' do
+  test 'valid structure' do
     guest = Guest.new(email: 'mon@mon.com', first_name: 'Raymond', last_name: 'Gabriel')
     assert guest.valid?
   end
@@ -25,7 +25,3 @@ class GuestTest < ActiveSupport::TestCase
     assert guest.errors.full_messages.include?("Last name can't be blank")
   end
 end
-
-
-
-# silly love songs
