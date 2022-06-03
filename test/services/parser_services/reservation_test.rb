@@ -91,4 +91,38 @@ class ParserServices::ReservationTest < ActiveSupport::TestCase
     assert_equal parsed_reservation[:currency], payload["reservation"]["host_currency"]
     assert_equal parsed_reservation[:status], payload["reservation"]["status_type"]
   end
+
+  test 'raises an InvalidFormatError type exception on unknown formats' do
+    payload = {
+      "reservation" => {
+        "codexxxxx" => "TYU12345678",
+        "start_date" => "2021-03-12",
+        "end_date" => "2021-03-16",
+        "expected_payout_amount" => "3800.00",
+        "guest_details" => {
+          "localized_description" => "4 guests",
+          "number_of_adults" => 2,
+          "number_of_children" => 2,
+          "number_of_infants" => 0
+        },
+        "guestx_email" => "dd@bnb.com",
+        "guestx_first_name" => "Wayne",
+        "guestx_last_name" => "Woodbridge",
+        "guestx_phone_numbers" => [
+          "639123456789",
+          "639123456789"
+        ],
+        "listing_security_price_accurate" => "500.00",
+        "host_currency" => "AUD",
+        "nights" => 4,
+        "number_of_guests" => 4,
+        "status_type" => "accepted",
+        "total_paid_amount_accurate" => "4300.00"
+      }
+    }
+
+    assert_raises Exceptions::InvalidFormatError do
+      ParserServices::Reservation.parse(payload)
+    end
+  end
 end
