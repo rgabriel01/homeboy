@@ -1,7 +1,7 @@
 module ProfileServices
   class Reservation
     def initialize(guest_id, payload)
-      @payload = payload
+      @payload = ParserServices::Reservation.parse(payload)
       @guest_id = guest_id
     end
 

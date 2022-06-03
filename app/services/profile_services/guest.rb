@@ -1,7 +1,7 @@
 module ProfileServices
   class Guest
     def initialize(payload)
-      @payload = payload
+      @payload = ParserServices::Guest.parse(payload)
     end
 
     def self.create!(payload)
